@@ -150,7 +150,9 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
-        \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class, 
+        \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
 
         /*
          * Package Service Providers...

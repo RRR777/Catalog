@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator</title>
+    <title>Laser Shop</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -35,7 +35,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}"><b>Laser Shop</b></a>
     </div>
 
     <!-- /.login-logo -->
@@ -43,7 +43,7 @@
         <p class="login-box-msg">Reset your password</p>
 
         <form method="post" action="{{ url('/password/reset') }}">
-            {!! csrf_field() !!}
+            {{ csrf_field() }}
 
             <input type="hidden" name="token" value="{{ $token }}">
 
