@@ -21,10 +21,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('items', 'ItemController');
     Route::resource('roles', 'RoleController');
-    Route::resource('users', 'UserController');
+    Route::resource('users', 'UserController')->except(['create', 'store', 'edit', 'update', 'delete']);
     Route::resource('customers', 'CustomerController')->except(['create']);
     Route::resource('orders', 'OrderController');
-    Route::resource('invoices', 'InvoiceController')->except(['create', 'edit']);
+    Route::resource('invoices', 'InvoiceController')->except(['create', 'edit', 'update']);
 
     Route::get('searchcustomer', 'CustomerController@search');
     Route::get('searchitem', 'ItemController@search');

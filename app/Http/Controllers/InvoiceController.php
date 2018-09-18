@@ -21,7 +21,6 @@ class InvoiceController extends AppBaseController
     public function __construct(InvoiceRepository $invoiceRepo)
     {
         $this->invoiceRepository = $invoiceRepo;
-        $this->middleware('admin');
     }
 
     /**

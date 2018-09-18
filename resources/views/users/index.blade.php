@@ -9,14 +9,14 @@
                 <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 All Users
             </small>
-        </h1>
+{{--         </h1>
         <h1 class="pull-right">
             <a class="btn btn-primary pull-right"
                 style="margin-top: -10px;margin-bottom: 5px"
                 href="{{ route('users.create') }}">
                 Add New User
             </a>
-        </h1>
+        </h1> --}}
     </section>
     <div class="content">
         <div class="clearfix"></div>

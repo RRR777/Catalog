@@ -21,7 +21,6 @@ class ItemController extends AppBaseController
     public function __construct(ItemRepository $itemRepo)
     {
         $this->itemRepository = $itemRepo;
-        $this->middleware('admin');
     }
 
     /**
@@ -99,7 +98,7 @@ class ItemController extends AppBaseController
             return redirect(route('items.index'));
         }
 
-        if (Auth::check() && Auth::user()->role->name == "Admin") {
+        if (Auth::check() && Auth::user()->role_id == 1) {
             return view('items.show', compact('item'));
         } else {
             return view('items.show_frontend', compact('item'));

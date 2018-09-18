@@ -36,23 +36,28 @@
                     </table>
                 </div>
                 <br>
+                @include('flash::message')
                 <h4>Add a Oder Details</h4>
-                
-                    <section class="creditly-wrapper wrapper">
-                        <div class="information-wrapper">
-                            <div class="first-row form-group">
-                                {{ Form::open(['route' => 'orders.store']) }}
-                                    @include('orders.fields')
-                                    @include('customers.fields')
-                                    <button class="submit check_out">Save</button>
-                                {{ Form::close() }}
+                @if (count($errors) > 0)
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger" role="alert">{{ $error }}</p>
+                    @endforeach
+                @endif
+                <section class="creditly-wrapper wrapper">
+                    <div class="information-wrapper">
+                        <div class="first-row form-group">
+                            {{ Form::open(['route' => 'orders.store']) }}
+                                @include('orders.fields')
+                                @include('customers.fields')
+                                <button class="submit check_out">Save</button>
+                            {{ Form::close() }}
                         </div>
-                    </section>
+                    </div>
+                </section>
             </div>
             <div class="clearfix"> </div>
-    <!-- //top products -->
-
-            </div>
+            <!-- //top products -->
         </div>
-        <!-- //top products -->
+    </div>
+    <!-- //top products -->
 @endsection
