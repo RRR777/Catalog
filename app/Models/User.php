@@ -2,9 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
@@ -22,9 +19,8 @@ use Kyslik\ColumnSortable\Sortable;
  * @property integer role_id
  * @property string remember_token
  */
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
     use SoftDeletes;
     use Sortable;
 
@@ -34,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id',
+        'name', 'email', 'role_id',
     ];
 
     /**

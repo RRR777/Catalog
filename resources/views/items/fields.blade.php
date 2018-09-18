@@ -1,7 +1,7 @@
 <div class="card col-sm-6 col-md-4" style="width: 40rem;">
     @if (isset($item->image) && $item->image)
         <div class="thumbnail">
-            <img class="card-img-top" style="width: 36rem;" src="{{ asset('/storage/images/items/' . $item->id . '/' . $item->image) }}" alt="Card image cap">
+            <img class="card-img-top" style="width: 36rem;" src="{{ asset('/images/items/' . $item->id . '/' . $item->image) }}" alt="Card image cap">
         </div>
     @endif
 </div>

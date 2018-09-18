@@ -64,10 +64,10 @@
         <div class="row">
             <div class="col-xs-6">
                 <p class="lead">Payment Methods:</p>
-                <img src="{{ asset('/storage/images/credit/visa.png') }}" alt="Visa">
-                <img src="{{ asset('/storage/images/credit/mastercard.png') }}" alt="Mastercard">
-                <img src="{{ asset('/storage/images/credit/american-express.png') }}" alt="American Express">
-                <img src="{{ asset('/storage/images/credit/paypal2.png') }}" alt="Paypal">
+                <img src="{{ asset('/images/credit/visa.png') }}" alt="Visa">
+                <img src="{{ asset('/images/credit/mastercard.png') }}" alt="Mastercard">
+                <img src="{{ asset('/images/credit/american-express.png') }}" alt="American Express">
+                <img src="{{ asset('/images/credit/paypal2.png') }}" alt="Paypal">
                 <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                 </p>
           </div>
@@ -82,10 +82,6 @@
                         <tr>
                             <th>Tax (21%)</th>
                             <td>{{ number_format(($invoice->total * 21 / 100), 2) }}</td>
-                        </tr>
-                        <tr>
-                            <th>Shipping:</th>
-                            <td>{{ number_format(30, 2) }}</td>
                         </tr>
                         <tr>
                             <th>Total:</th>

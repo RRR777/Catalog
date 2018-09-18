@@ -11,7 +11,6 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Item;
-use Auth;
 
 class ItemController extends AppBaseController
 {
@@ -21,7 +20,6 @@ class ItemController extends AppBaseController
     public function __construct(ItemRepository $itemRepo)
     {
         $this->itemRepository = $itemRepo;
-        $this->middleware('admin');
     }
 
     /**
@@ -72,7 +70,7 @@ class ItemController extends AppBaseController
 
         if ($item) {
             if ($request->file('image')) {
-                $destinationPath = public_path('/images/items/' . $item->id . '/');
+                $destinationPath = public_path('images/items/' . $item->id . '/');
                 $image->move($destinationPath, $input['image']);
             }
         }
@@ -99,11 +97,7 @@ class ItemController extends AppBaseController
             return redirect(route('items.index'));
         }
 
-        if (Auth::check() && Auth::user()->role->name == "Admin") {
-            return view('items.show', compact('item'));
-        } else {
-            return view('items.show_frontend', compact('item'));
-        }
+        return view('items.show')->with('item', $item);
     }
 
     /**
@@ -158,7 +152,7 @@ class ItemController extends AppBaseController
 
         if ($item) {
             if ($request->file('image')) {
-                $destinationPath = public_path('images/items/' . $item->id . '/');
+                $destinationPath = public_path('/storage/images/items/' . $item->id . '/');
                 $image->move($destinationPath, $input['image']);
             }
         }
@@ -205,5 +199,10 @@ class ItemController extends AppBaseController
         }
 
         return view('items.index', compact('items', 'q'));
+    }
+
+    public function welcome()
+    {
+        return view('welcome');
     }
 }

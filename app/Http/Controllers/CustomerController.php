@@ -20,6 +20,7 @@ class CustomerController extends AppBaseController
     public function __construct(CustomerRepository $customerRepo)
     {
         $this->customerRepository = $customerRepo;
+        $this->middleware('admin');
     }
 
     /**
@@ -163,10 +164,12 @@ class CustomerController extends AppBaseController
     {
         $q = $request->q;
         if (filled($q)) {
-            $customers = Customer::where('firstName', 'LIKE', '%' . $q . '%')
+            $customers = Customer::where('id', 'LIKE', '%' . $q . '%')
+                ->orWhere('firstName', 'LIKE', '%' . $q . '%')
                 ->orWhere('lastName', 'LIKE', '%' . $q . '%')
                 ->orWhere('email', 'LIKE', '%' . $q . '%')
                 ->orWhere('country', 'LIKE', '%' . $q . '%')
+                ->orWhere('totalRevenue', 'LIKE', '%' . $q . '%')
                 ->sortable()->paginate(10);
             Flash::success('Search results  "' . $q . '"');
         } else {
@@ -189,5 +192,4 @@ class CustomerController extends AppBaseController
         }
         return view('customers.index', compact('customers', 'countries'));
     }
-
 }

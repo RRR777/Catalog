@@ -1,6 +1,6 @@
 <div class="card col-6 col-md-4" style="width: 36rem;">
     <div class="thumbnail">
-        <img class="card-img-top" src="{{ asset('/storage/images/items/' . $item->id . '/' . $item->image) }}" alt="Card image cap">
+        <img class="card-img-top" src="{{ asset('images/items/' . $item->id . '/' . $item->image) }}" alt="Card image cap">
         <div class="card-body">
             <h3></h3>
             <ul class="list-group list-group-flush">

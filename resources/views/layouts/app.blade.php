@@ -37,7 +37,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <img src="{{ asset('storage/images/logo/Laser-symbol.png') }}" class="img-circle" style="width: 30px; high: 30px;"
+                <img src="{{ asset('/images/logo/Laser-symbol.png') }}" class="img-circle" style="width: 30px; high: 30px;"
                      alt="Logo Image"/>
                 <span class="hidden-xs"><b>Laser Shop</b></span>
             </a>
@@ -56,7 +56,7 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="{{ asset('storage/images/avatar/avatar3.png') }}"
+                                <img src="{{ asset('/images/avatar/avatar3.png') }}"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -64,7 +64,7 @@
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="{{ asset('storage/images/avatar/avatar3.png') }}"
+                                    <img src="{{ asset('/images/avatar/avatar3.png') }}"
                                          class="img-circle" alt="User Image"/>
                                     <p>
                                         {{ Auth::user()->name }}

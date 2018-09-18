@@ -14,6 +14,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class OrderController extends AppBaseController
 {
@@ -48,7 +49,12 @@ class OrderController extends AppBaseController
     public function create(Request $request)
     {
         $item = Item::where('id', $request->item_id)->first();
-        return view('orders.create', compact('item'));
+
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return view('orders.create', compact('item'));
+        } else {
+            return view('orders.create_frontend', compact('item'));
+        }
     }
 
     /**
@@ -91,8 +97,8 @@ class OrderController extends AppBaseController
             'itemPrice' => $order->item->price,
             'itemQuantity' => $order->quantity,
             'total' => $order->quantity * $order->item->price,
-            'issue_date' => now()->subDays(mt_rand(1, 60))->format('Y-m-d'),
-            'due_date' => now()->addDays(mt_rand(1, 99))->format('Y-m-d'),
+            'issue_date' => now()->format('Y-m-d'),
+            'due_date' => now()->addDays(30)->format('Y-m-d'),
         ]);
 
         $customer->totalRevenue += $invoice->total;
@@ -195,13 +201,45 @@ class OrderController extends AppBaseController
     public function search(Request $request)
     {
         $q = $request->q;
+
         if (filled($q)) {
             $orders = Order::where('id', 'LIKE', '%' . $q . '%')
-                ->orWhere('customer_id', 'LIKE', '%' . $q . '%')
-                ->orWhere('item_id', 'LIKE', '%' . $q . '%')
                 ->orWhere('quantity', 'LIKE', '%' . $q . '%')
                 ->orWhere('created_at', 'LIKE', '%' . $q . '%')
                 ->sortable()->paginate(10);
+            $searchResult = $orders;
+
+            $customers = Customer::where('firstName', 'LIKE', '%' . $q . '%')
+                ->orWhere('lastName', 'LIKE', '%' . $q . '%')
+                ->sortable()->paginate(10);
+
+            if ($customers) {
+                foreach ($customers as $customer) {
+                    $customersearches = Order::where('customer_id', $customer->id)->sortable()->paginate(10);
+                    if ($customersearches) {
+                        foreach ($customersearches as $customersearch) {
+                            $searchResult->push($customersearch);
+                        }
+                    }
+                }
+            }
+
+            $items = Item::where('name', 'LIKE', '%' . $q . '%')
+                ->sortable()->paginate(10);
+
+            if ($items) {
+                foreach ($items as $item) {
+                    $itemsearches = Order::where('item_id', $item->id)->sortable()->paginate(10);
+                    if ($itemsearches) {
+                        foreach ($itemsearches as $itemsearch) {
+                            $searchResult->push($itemsearch);
+                        }
+                    }
+                }
+            }
+
+            $orders = $searchResult;
+
             Flash::success('Search results  "' . $q . '"');
         } else {
             $orders = Order::sortable()->paginate(10);

@@ -15,17 +15,18 @@ class UsersTableSeeder extends Seeder
         User::truncate();
 
         User::create([
+            'email' => 'admin@mail.com',
+            'name' => "Admin",
+            'password' => bcrypt('123456'),
+            'role_id' => 1
+        ]);
+
+        User::create([
             'email' => 'rita@mail.com',
             'name' => "Rita",
             'password' => bcrypt('123456'),
             'role_id' => 3
         ]);
 
-        User::create([
-            'email' => 'admin@mail.com',
-            'name' => "Admin",
-            'password' => bcrypt('123456'),
-            'role_id' => 1
-        ]);
     }
 }

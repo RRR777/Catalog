@@ -11,5 +11,5 @@
 <!-- Quantity Field -->
 <div class="form-group col-sm-12">
     {{ Form::label('quantity', 'Quantity:') }}
-    {{ Form::number('quantity', null, ['class' => 'form-control']) }}
+    {{ Form::number('quantity', null, ['class' => 'form-control', 'placeholder' => "Enter quantity"]) }}
 </div>

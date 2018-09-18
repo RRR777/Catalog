@@ -11,6 +11,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class InvoiceController extends AppBaseController
 {
@@ -20,6 +21,7 @@ class InvoiceController extends AppBaseController
     public function __construct(InvoiceRepository $invoiceRepo)
     {
         $this->invoiceRepository = $invoiceRepo;
+        $this->middleware('admin');
     }
 
     /**
@@ -81,7 +83,11 @@ class InvoiceController extends AppBaseController
             return redirect(route('invoices.index'));
         }
 
-        return view('invoices.show')->with('invoice', $invoice);
+        if (Auth::check() && Auth::user()->role->name == "Admin") {
+            return view('invoices.show', compact('invoice'));
+        } else {
+            return view('invoices.show_frontend')->with('invoice', $invoice);
+        }
     }
 
     /**
@@ -154,6 +160,7 @@ class InvoiceController extends AppBaseController
     }
     public function search(Request $request)
     {
+        
         $q = $request->q;
         if (filled($q)) {
             $invoices = Invoice::where('id', 'LIKE', '%' . $q . '%')
@@ -166,7 +173,7 @@ class InvoiceController extends AppBaseController
                 ->orWhere('issue_date', 'LIKE', '%' . $q . '%')
                 ->orWhere('due_date', 'LIKE', '%' . $q . '%')
                 ->sortable()->paginate(10);
-            Flash::success('Search results  "' . $q . '"');
+            Flash::success('Search results "' . $q . '"');
         } else {
             $invoices = Invoice::sortable()->paginate(10);
         }
