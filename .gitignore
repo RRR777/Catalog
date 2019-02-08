@@ -16,3 +16,4 @@ yarn-error.log
 .env.production
 /public/index.production.php
 .phpunit.result.cache
+_ide_helper.php
