@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Customer;
@@ -18,7 +17,6 @@ use Auth;
 
 class OrderController extends AppBaseController
 {
-    /** @var  OrderRepository */
     private $orderRepository;
 
     public function __construct(OrderRepository $orderRepo)
@@ -26,12 +24,6 @@ class OrderController extends AppBaseController
         $this->orderRepository = $orderRepo;
     }
 
-    /**
-     * Display a listing of the Order.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->orderRepository->pushCriteria(new RequestCriteria($request));
@@ -41,11 +33,6 @@ class OrderController extends AppBaseController
             ->with('orders', $orders);
     }
 
-    /**
-     * Show the form for creating a new Order.
-     *
-     * @return Response
-     */
     public function create(Request $request)
     {
         $item = Item::where('id', $request->item_id)->first();
@@ -57,13 +44,6 @@ class OrderController extends AppBaseController
         }
     }
 
-    /**
-     * Store a newly created Order in storage.
-     *
-     * @param CreateOrderRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateOrderRequest $request)
     {
         $input = $request->all();
@@ -109,13 +89,6 @@ class OrderController extends AppBaseController
         return redirect(route('invoices.show', $invoice->id));
     }
 
-    /**
-     * Display the specified Order.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function show($id)
     {
         $order = $this->orderRepository->findWithoutFail($id);
@@ -129,13 +102,7 @@ class OrderController extends AppBaseController
         return view('orders.show')->with('order', $order);
     }
 
-    /**
-     * Show the form for editing the specified Order.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+
     public function edit($id)
     {
         $order = $this->orderRepository->findWithoutFail($id);
@@ -149,14 +116,6 @@ class OrderController extends AppBaseController
         return view('orders.edit')->with('order', $order);
     }
 
-    /**
-     * Update the specified Order in storage.
-     *
-     * @param  int              $id
-     * @param UpdateOrderRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateOrderRequest $request)
     {
         $order = $this->orderRepository->findWithoutFail($id);
@@ -174,13 +133,6 @@ class OrderController extends AppBaseController
         return redirect(route('orders.index'));
     }
 
-    /**
-     * Remove the specified Order from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function destroy($id)
     {
         $order = $this->orderRepository->findWithoutFail($id);

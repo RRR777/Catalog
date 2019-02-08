@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Models\Invoice;
@@ -15,7 +14,6 @@ use Auth;
 
 class InvoiceController extends AppBaseController
 {
-    /** @var  InvoiceRepository */
     private $invoiceRepository;
 
     public function __construct(InvoiceRepository $invoiceRepo)
@@ -23,12 +21,6 @@ class InvoiceController extends AppBaseController
         $this->invoiceRepository = $invoiceRepo;
     }
 
-    /**
-     * Display a listing of the Invoice.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->invoiceRepository->pushCriteria(new RequestCriteria($request));
@@ -37,23 +29,11 @@ class InvoiceController extends AppBaseController
         return view('invoices.index', compact('invoices'));
     }
 
-    /**
-     * Show the form for creating a new Invoice.
-     *
-     * @return Response
-     */
     public function create()
     {
         return view('invoices.create');
     }
 
-    /**
-     * Store a newly created Invoice in storage.
-     *
-     * @param CreateInvoiceRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateInvoiceRequest $request)
     {
         $input = $request->all();
@@ -65,13 +45,7 @@ class InvoiceController extends AppBaseController
         return redirect(route('invoices.index'));
     }
 
-    /**
-     * Display the specified Invoice.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
+
     public function show($id)
     {
         $invoice = $this->invoiceRepository->findWithoutFail($id);
@@ -89,13 +63,6 @@ class InvoiceController extends AppBaseController
         }
     }
 
-    /**
-     * Show the form for editing the specified Invoice.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
         $invoice = $this->invoiceRepository->findWithoutFail($id);
@@ -109,14 +76,6 @@ class InvoiceController extends AppBaseController
         return view('invoices.edit')->with('invoice', $invoice);
     }
 
-    /**
-     * Update the specified Invoice in storage.
-     *
-     * @param  int              $id
-     * @param UpdateInvoiceRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateInvoiceRequest $request)
     {
         $invoice = $this->invoiceRepository->findWithoutFail($id);
@@ -134,13 +93,6 @@ class InvoiceController extends AppBaseController
         return redirect(route('invoices.index'));
     }
 
-    /**
-     * Remove the specified Invoice from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function destroy($id)
     {
         $invoice = $this->invoiceRepository->findWithoutFail($id);
@@ -157,9 +109,9 @@ class InvoiceController extends AppBaseController
 
         return redirect(route('invoices.index'));
     }
+
     public function search(Request $request)
     {
-        
         $q = $request->q;
         if (filled($q)) {
             $invoices = Invoice::where('id', 'LIKE', '%' . $q . '%')
