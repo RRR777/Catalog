@@ -20,6 +20,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::resource('items', 'ItemController');
+    Route::delete('delete-multiple-item', ['as'=>'item.multiple-delete','uses'=>'ItemController@deleteMultiple']);
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController')->except(['create', 'store', 'edit', 'update', 'delete']);
     Route::resource('customers', 'CustomerController')->except(['create']);

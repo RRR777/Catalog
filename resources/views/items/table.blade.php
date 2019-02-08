@@ -20,14 +20,16 @@
 <table class="table table-bordered table-striped table-hover table-responsive" id="items-table">
     <thead>
         <tr>
+            <th><input type="checkbox" id="check_all"></th>
             <th>@sortablelink('name', 'Name')</th>
             <th>@sortablelink('price', 'Price') <i class="fa fa-eur"></i></th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($items as $item)
-            <tr>
+        @foreach($items as $key => $item)
+            <tr id="tr_{{$item->id}}">
+                <td><input type="checkbox" class="checkbox" data-id="{{$item->id}}"></td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->price }}</td>
                 <td>
@@ -45,6 +47,7 @@
 </table>
 <div class="row">
     <div class="col-sm-3">
+        <button style="margin: 5px;" class="btn btn-danger btn-xs delete-all" data-url="">Delete All Selected Items</button>
         <br>
         <span>Total records found: {{ $items->total() }}</span>
     </div>
