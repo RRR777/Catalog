@@ -76,7 +76,7 @@ class Item extends Model
         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'sku'=> 'required|string|min:3|max:30',
         'status' => 'required|string',
-        'specialPrice' => 'numeric|min:1|max:20000',
+        'specialPrice' => 'nullable|numeric|min:1|max:20000',
         'description' => 'string'
     ];
 

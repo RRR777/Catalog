@@ -26,7 +26,15 @@
             </div>
             <div class="col-md-8 single-right-left simpleCart_shelfItem">
                 <h3>{{ $item->name }}</h3>
-                <p><span class="item_price">Price: {{ $item->price }} <i class="fa fa-eur"></i></span></p>
+                @if($item->specialPrice)
+                    <p>
+                        <span class="item_price">Price: {{ $item->specialPrice }} <i class="fa fa-eur"></i></span>
+                        <del>${{ $item->price }}</del>
+                    </p>
+                @else
+                    <p><span class="item_price">Price: {{ $item->price }} <i class="fa fa-eur"></i></span></p>
+                @endif
+
                 <div class="rating1">
                     <ul class="stars">
                         <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -40,6 +48,8 @@
                     <h4><strong>Item description and technical data</strong></h4>
                     <br>
                     <ul>
+                        <li>Item sku: {{ $item->sku }}</li>
+                        <li>{{ $item->description }}</li>
                         <li>Simple design allows you to sail the boat off of a dock, beach or dinghy park</li>
                         <li>The Full-Rig, Radial and 4.7m sails match sailors of any size and ability</li>
                         <li>Strict One Design class rules ensure that all Lasers are absolutely identical</li>
@@ -49,7 +59,7 @@
                     </ul>
                     <br>
                     <div class="shop-button">
-                        <a href="{{ route('orders.create', ['item_id'=>1]) }}">Buy Now</a>
+                        <a href="{{ route('orders.create', ['item_id'=>$item->id]) }}">Buy Now</a>
                     </div>
                 </div>
 

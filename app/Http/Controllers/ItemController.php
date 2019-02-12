@@ -26,8 +26,11 @@ class ItemController extends AppBaseController
         $this->itemRepository->pushCriteria(new RequestCriteria($request));
         $items = Item::sortable()->paginate(10);
 
-        return view('items.index')
-            ->with('items', $items);
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return view('items.index', compact('items'));
+        } else {
+            return view('items.index_frontend', compact('items'));
+        }
     }
 
     public function create()

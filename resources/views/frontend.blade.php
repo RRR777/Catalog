@@ -62,7 +62,7 @@
     <div class="grids_bottom">
         <div class="style-grids">
             <div class="col-md-6 style-grid style-grid-1">
-                <img src="frontend_template/images/b1.jpg" alt="shoe">
+                <img src="frontend_template/images/b1.jpg" alt="image">
             </div>
         </div>
         <div class="col-md-6 style-grid style-grid-2">
@@ -72,7 +72,7 @@
                     <p>The Laser is the world’s most popular adult racing class boat. </p>
                     <p>Each Laser in the world is identical ensuring the best sailor on the water wins the race, not the boat.</p>
                     <div class="shop-button">
-                        <a href="{{ route('items.show', ['item_id'=>1]) }}">Shop Now</a>
+                        <a href="{{ route('items.index') }}">Shop Now</a>
                     </div>
                 </div>
             </div>

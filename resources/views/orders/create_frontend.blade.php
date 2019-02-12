@@ -37,7 +37,7 @@
                 </div>
                 <br>
                 @include('flash::message')
-                <h4>Add a Oder Details</h4>
+                <h4>Add Oder Details</h4>
                 @if (count($errors) > 0)
                     @foreach ($errors->all() as $error)
                         <p class="alert alert-danger" role="alert">{{ $error }}</p>
