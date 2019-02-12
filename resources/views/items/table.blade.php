@@ -21,8 +21,11 @@
     <thead>
         <tr>
             <th><input type="checkbox" id="check_all"></th>
+            <th>@sortablelink('status', 'Status')</th>
+            <th>@sortablelink('sku', 'SKU')</th>
             <th>@sortablelink('name', 'Name')</th>
             <th>@sortablelink('price', 'Price') <i class="fa fa-eur"></i></th>
+            <th>@sortablelink('specialPrice', 'Special Price') <i class="fa fa-eur"></i></th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -30,8 +33,11 @@
         @foreach($items as $key => $item)
             <tr id="tr_{{$item->id}}">
                 <td><input type="checkbox" class="checkbox" data-id="{{$item->id}}"></td>
+                <td>{{ $item->status }}</td>
+                <td>{{ $item->sku }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->price }}</td>
+                <td>{{ $item->specialPrice }}</td>
                 <td>
                     {{ Form::open(['route' => ['items.destroy', $item->id], 'method' => 'delete']) }}
                         <div class='btn-group'>

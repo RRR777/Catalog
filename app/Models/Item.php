@@ -32,13 +32,21 @@ class Item extends Model
     public $fillable = [
         'name',
         'price',
-        'image'
+        'image',
+        'sku',
+        'status',
+        'specialPrice',
+        'description'
     ];
 
     public $sortable = [
         'id',
         'name',
         'price',
+        'sku',
+        'status',
+        'specialPrice',
+        'description'
     ];
 
     /**
@@ -50,7 +58,11 @@ class Item extends Model
         'id' => 'integer',
         'name' => 'string',
         'price' => 'double',
-        'image' => 'string'
+        'image' => 'string',
+        'sku' => 'string',
+        'status' => 'string',
+        'specialPrice'  => 'double',
+        'description' => 'string'
     ];
 
     /**
@@ -61,7 +73,11 @@ class Item extends Model
     public static $rules = [
         'name' => 'required|string|min:3|max:30',
         'price' => 'required|numeric|min:1|max:20000',
-        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'sku'=> 'required|string|min:3|max:30',
+        'status' => 'required|string',
+        'specialPrice' => 'numeric|min:1|max:20000',
+        'description' => 'string'
     ];
 
     /**

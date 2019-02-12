@@ -22,7 +22,11 @@ class ItemRepository extends BaseRepository
     protected $fieldSearchable = [
         'name',
         'price',
-        'image'
+        'image',
+        'sku',
+        'status',
+        'specialPrice',
+        'description'
     ];
 
     /**
