@@ -12,7 +12,6 @@ use App\Repositories\OrderRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
 use Auth;
 
 class OrderController extends AppBaseController
@@ -24,13 +23,11 @@ class OrderController extends AppBaseController
         $this->orderRepository = $orderRepo;
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $this->orderRepository->pushCriteria(new RequestCriteria($request));
         $orders = Order::sortable()->paginate(10);
 
-        return view('orders.index')
-            ->with('orders', $orders);
+        return view('orders.index', compact('orders'));
     }
 
     public function create(Request $request)
@@ -52,7 +49,7 @@ class OrderController extends AppBaseController
             'firstName' => 'required|min:3|max:30',
             'lastName' => 'required|min:3|max:30',
             'email' => 'required|string|email|max:30',
-            'country' => 'required|string',
+            'country' => 'required|string'
         ]);
 
         $customer = Customer::where('email', $request->email)->first();
@@ -99,9 +96,8 @@ class OrderController extends AppBaseController
             return redirect(route('orders.index'));
         }
 
-        return view('orders.show')->with('order', $order);
+        return view('orders.show', compact('order'));
     }
-
 
     public function edit($id)
     {
@@ -113,7 +109,7 @@ class OrderController extends AppBaseController
             return redirect(route('orders.index'));
         }
 
-        return view('orders.edit')->with('order', $order);
+        return view('orders.edit', compact('order'));
     }
 
     public function update($id, UpdateOrderRequest $request)
@@ -126,7 +122,7 @@ class OrderController extends AppBaseController
             return redirect(route('orders.index'));
         }
 
-        $order = $this->orderRepository->update($request->all(), $id);
+        $this->orderRepository->update($request->all(), $id);
 
         Flash::success('Order updated successfully.');
 

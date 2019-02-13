@@ -8,18 +8,6 @@ use Kyslik\ColumnSortable\Sortable;
 use App\Filters\CustomerFilter;
 use Illuminate\Database\Eloquent\Builder;
 
-
-/**
- * Class Customer
- * @package App\Models
- * @version September 11, 2018, 2:29 pm UTC
- *
- * @property \Illuminate\Database\Eloquent\Collection Order
- * @property string firstName
- * @property string lastName
- * @property string email
- * @property string country
- */
 class Customer extends Model
 {
     use SoftDeletes;

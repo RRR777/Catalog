@@ -5,7 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <title>Laser Shop</title>
@@ -186,7 +186,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h4>Our <span>Information</span> </h4>
                         <ul>
                             <li><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{ route('items.show', ['item_id'=>1]) }}">Item</a></li>
+                            <li><a href="{{ route('items.index') }}">Items</a></li>
                         </ul>
                     </div>
 
@@ -209,7 +209,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </div>
                                 <div class="address-right">
                                     <h6>Email Address</h6>
-                                    <p style="color: white;">Email :<a href="mailto:example@email.com"> ritaj777@gmail.com</a></p>
+                                    <p style="color: white;">Email :<a href="mailto:ritaj777@gmail.com"> ritaj777@gmail.com</a></p>
                                 </div>
                                 <div class="clearfix"> </div>
                             </div>

@@ -35,7 +35,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('searchinvoice', 'InvoiceController@search');
 });
 
-Route::resource('items', 'ItemController')->only(['show']);
+Route::resource('items', 'ItemController');
 Route::resource('orders', 'OrderController')->only(['create']);
 Route::resource('orders', 'OrderController')->only(['store']);
 Route::resource('invoices', 'InvoiceController')->only(['show']);
