@@ -22,7 +22,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('items', 'ItemController');
     Route::delete('delete-multiple-item', ['as'=>'item.multiple-delete','uses'=>'ItemController@deleteMultiple']);
     Route::resource('roles', 'RoleController');
-    Route::resource('users', 'UserController')->except(['create', 'store', 'edit', 'update', 'delete']);
+    Route::resource('users', 'UserController');
     Route::resource('customers', 'CustomerController')->except(['create']);
     Route::resource('orders', 'OrderController');
     Route::resource('invoices', 'InvoiceController')->except(['create', 'edit', 'update']);
@@ -35,7 +35,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('searchinvoice', 'InvoiceController@search');
 });
 
-Route::resource('items', 'ItemController');
+Route::resource('items', 'ItemController')->only(['show']);
+Route::resource('items', 'ItemController')->only(['index']);
 Route::resource('orders', 'OrderController')->only(['create']);
 Route::resource('orders', 'OrderController')->only(['store']);
 Route::resource('invoices', 'InvoiceController')->only(['show']);

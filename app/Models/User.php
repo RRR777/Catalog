@@ -5,24 +5,14 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-/**
- * Class User
- * @package App\Models
- * @version September 12, 2018, 1:07 pm UTC
- *
- * @property \Illuminate\Database\Eloquent\Collection orders
- * @property string name
- * @property string email
- * @property string|\Carbon\Carbon email_verified_at
- * @property string password
- * @property integer role_id
- * @property string remember_token
- */
-class User extends Model
+class User extends Authenticatable
 {
     use SoftDeletes;
     use Sortable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -30,7 +20,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'role_id',
+        'name', 'email', 'role_id', 'password'
     ];
 
     /**
