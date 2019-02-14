@@ -67,13 +67,18 @@ class OrderController extends AppBaseController
 
         $order = $this->orderRepository->create($input);
 
+        if ($order->item->specialPrice) {
+            $itemPrice = $order->item->specialPrice;
+        } else {
+            $itemPrice = $order->item->price;
+        }
         $invoice = Invoice::create([
             'order_id' => $order->id,
             'customerName' => $customer->firstName . " " . $customer->lastName,
             'itemName' => $order->item->name,
-            'itemPrice' => $order->item->price,
+            'itemPrice' => $itemPrice,
             'itemQuantity' => $order->quantity,
-            'total' => $order->quantity * $order->item->price,
+            'total' => $order->quantity * $itemPrice,
             'issue_date' => now()->format('Y-m-d'),
             'due_date' => now()->addDays(30)->format('Y-m-d'),
         ]);

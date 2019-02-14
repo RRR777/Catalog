@@ -9,7 +9,6 @@ use App\Repositories\CustomerRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
 
 class CustomerController extends AppBaseController
 {
@@ -32,11 +31,6 @@ class CustomerController extends AppBaseController
         }
 
         return view('customers.index', compact('customers', 'countries'));
-    }
-
-    public function create()
-    {
-        return view('customers.create', compact('item'));
     }
 
     public function store(CreateCustomerRequest $request)

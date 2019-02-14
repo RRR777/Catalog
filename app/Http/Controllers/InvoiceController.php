@@ -45,7 +45,6 @@ class InvoiceController extends AppBaseController
         return redirect(route('invoices.index'));
     }
 
-
     public function show($id)
     {
         $invoice = $this->invoiceRepository->findWithoutFail($id);

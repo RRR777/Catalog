@@ -62,7 +62,7 @@
     <div class="grids_bottom">
         <div class="style-grids">
             <div class="col-md-6 style-grid style-grid-1">
-                <img src="frontend_template/images/b1.jpg" alt="image">
+                <img src="{{ asset('frontend_template/images/b1.jpg') }}" alt="image">
             </div>
         </div>
         <div class="col-md-6 style-grid style-grid-2">
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="style-image-2">
-                <img src="frontend_template/images/b2.jpg" alt="shoe">
+                <img src="{{ asset('frontend_template/images/b2.jpg') }}" alt="boat">
                 <div class="style-grid-2-text">
                     <h3>Speed Race</h3>
                 </div>
@@ -85,7 +85,5 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    </div>
     <!-- //grids_bottom-->
-
 @endsection

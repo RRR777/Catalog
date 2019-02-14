@@ -16,21 +16,26 @@
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="col-md-8 single-right-left simpleCart_shelfItem">
                 <div class="checkout-right">
                     <table class="timetable_sub">
                         <thead>
                             <tr>
-                                <th>SL No.</th>
+                                <th>SKU No.</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="rem1">
-                                <td class="invert">1</td>
+                                <td class="invert">{{ $item->sku }}</td>
                                 <td class="invert">{{ $item->name }}</td>
-                                <td class="invert">{{ $item->price }} <i class="fa fa-eur"></i></td>
+                                @if($item->specialPrice)
+                                    <td class="invert">{{ $item->specialPrice }} <i class="fa fa-eur"></i></td>
+                                @else
+                                    <td class="invert">{{ $item->price }} <i class="fa fa-eur"></i></td>
+                                @endif
                             </tr>
                         </tbody>
                     </table>

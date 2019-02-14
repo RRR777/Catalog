@@ -21,4 +21,3 @@
 <li class="{{ Request::is('invoices*') ? 'active' : '' }}">
     <a href="{!! route('invoices.index') !!}"><i class=" fa fa-file-text-o"></i><span>Invoices</span></a>
 </li>
-

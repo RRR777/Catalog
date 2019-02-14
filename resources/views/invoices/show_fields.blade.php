@@ -39,4 +39,3 @@
     {{ Form::label('updated_at', 'Updated At:') }}
     <p>{{ $invoice->updated_at }}</p>
 </div>
-

@@ -8,5 +8,4 @@
             @include('invoices.print')
         </div>
     </div>
-
 @endsection
